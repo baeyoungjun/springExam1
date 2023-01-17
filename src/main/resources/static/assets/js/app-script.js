@@ -15,7 +15,7 @@ $(".toggle-menu").on("click", function(e) {
     });	 
 	   
 // === sidebar menu activation js
-
+//ssssssss
 $(function() {
         for (var i = window.location, o = $(".sidebar-menu a").filter(function() {
             return this.href == i;
