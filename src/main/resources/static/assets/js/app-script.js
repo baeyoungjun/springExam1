@@ -191,6 +191,13 @@ newCell3.appendChild(newText3);
 const newText4 = document.createTextNode('03 Aug 2017');
 newCell4.appendChild(newText4);
 
+//append img
+var img = document.createElement("img");
+img.src="https://via.placeholder.com/110x110";
+img.className='product-img';
+img.setAttribute('alt','product img');
+newCell1.appendChild(img);
+
 //append progress bar
 var newdiv1=document.createElement('div');
 newdiv1.className="progress shadow";
