@@ -1,0 +1,72 @@
+# spring profile config
+spring:
+  profiles:
+    active: dev
+  devtools :
+    livereload :
+      enabled : true
+  output:
+    ansi:
+      enabled: ALWAYS #콘솔 컬러
+
+  #템플릿 엔진 - jstl, el 처럼 데이터를 html 템플릿에 맞게 변환해주는 역할
+  #freemarker :
+    #cache : false
+  #thymeleaf:
+    #cache : false
+
+---
+# dev
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+  servlet.session.timeout: 60m
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  mvc:
+    view:
+      prefix: /resources/static/
+      suffix: .html
+
+  # DATA BASE
+  datasource:
+
+    #testServer
+    #driver-class-name: org.mariadb.jdbc.Driver #mariaDB original
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy #log4jdbc
+    url: jdbc:log4jdbc:mysql://3.34.141.19/hackathon?serverTimezone=UTC&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password: cbk0501
+
+    hikari:
+      maximum-pool-size: 10
+      connection-test-query: SELECT 1 FROM DUAL
+      connection-init-sql: SELECT 1 FROM DUAL
+      connection-timeout: 60000   #60초 #풀에서 커넥션하는 시간제한
+      idle-timeout: 600000        #10분 #커넥션이 유휴 상태로 있을 수 있는 시간제한
+      validation-timeout: 2000    #커넥션이 유효한지 검사하는 시간제한
+      max-lifetime: 1800000       #30분 #커넥션 최대 유지 시간제한
+
+
+mybatis:
+  #mapper-locations: mapper/**/*.xml
+  config-location: classpath:config/mybatis-config.xml
+
+# Logger
+logging:
+  file:
+    path: /Users/KOSCOM/Desktop/cbk/logs
+  level:
+    root: debug
+    org.springframework: debug
+    com.example.firstProject: debug

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <setting name="useColumnLabel" value="true"/>
+        <setting name="useGeneratedKeys" value="false"/>
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+        <setting name="defaultStatementTimeout" value="3000"/>
+        <setting name="safeRowBoundsEnabled" value="false"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="localCacheScope" value="SESSION"/>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+        <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+        <!-- cacheEnabled : 동일한 sql 구문에 대해서 캐싱
+             lazyLoadingEnabled : 지연 로딩 사용 여부
+             multipleResultSetsEnabled : 한 개의 구문에서 여러 개의 result set 허용 여부
+             useColumnLabel : 컬럼명 대신 컬럼라벨 사용
+             useGeneratedKeys : 생성키 지원 여부
+             defaultExecutorType : 디폴트 실행 타입
+             defaultStatementTimeout : DB 응답 타임아웃
+             safeRowBoundsEnabled : 중첩 구문 내 rowbound 허용 여부
+             mapUnderscoreToCamelCase : 컬럼명을 camel 표기법으로 자동 매핑 (객체(DTO/VO)만 적용됨)
+             localCacheScope : SESSION 을 사용해서 쿼리를 캐시
+             jdbcTypeForNull : DB 데이터가 null 일 경우의 java type 설정
+             lazyLoadTriggerMethods : 지연 로딩의 원인이 되는 객체의 메소드를 명시
+             -->
+    </settings>
+    <mappers>
+        <mapper resource="mapper/user/UserMapper.xml"/>
+        <mapper resource="mapper/analysis/AnalysisMapper.xml"/>
+    </mappers>
+</configuration>
