@@ -210,4 +210,18 @@ newdiv2.style.cssText="width: 90%";
 newdiv1.appendChild(newdiv2);
 newCell5.appendChild(newdiv1);
 
+
+//클릭 이벤트
+var clicked='';
+
+var target=document.getElementById("cardList");
+target.childNodes[1].childNodes[1].childNodes[1].textContent;
+target.onclick = function(){
+    clicked=target.textContent;
+    var hide=document.getElementById("firstTab");
+    var show=document.getElementById("content");
+    show.style.display='';
+    hide.style.display='none';
+}
+
 */
