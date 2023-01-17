@@ -20,7 +20,21 @@ window.onload = function(){
     //var clicked='';
 
     var target=document.getElementById("cardList");
+    var OutTarget=document.getElementById("firstTab");
+    var flag = 0;
     //target.childNodes[1].childNodes[1].childNodes[1].textContent;
+
+    target.addEventListener("mouseover", function(event){
+        event.target.style.backgroundColor = '#00000050';
+        //event.target.style.opacity = 100;
+    })
+
+    target.addEventListener("mouseout", function(event){
+          event.target.style.backgroundColor = '';
+
+        //event.target.style.opacity = 0.6;
+    })
+
 
     for(var i =0;i<(target.childNodes.length-1)/2;i++){
         target.childNodes[i*2+1].addEventListener("click",function(event){
