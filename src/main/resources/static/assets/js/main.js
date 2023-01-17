@@ -1,8 +1,20 @@
 var clicked='';
 
+
+
+//실시간 글씨 변경 사용법
+var count=0;
+var arr=['채승훈','최보경','배영준','이상민'];
+
+setInterval(function(){
+    var temp=document.getElementById("temp");
+        temp.textContent=arr[count%4];
+        count++;
+    }, 1000);
+
+
 window.onload = function(){
  	console.log(location.href);
-
 
     //클릭 이벤트
     //var clicked='';
@@ -20,7 +32,6 @@ window.onload = function(){
         });
     }
   }
-
 
 
 /*
