@@ -22,6 +22,22 @@ window.onload = function(){
     var target=document.getElementById("cardList");
     //target.childNodes[1].childNodes[1].childNodes[1].textContent;
 
+        
+    //마우스 오버 시각화
+    for(var i =0;i<(target.childNodes.length-1)/2;i++){
+         target.childNodes[i*2+1].addEventListener("mouseenter",function(event){
+            event.target.childNodes[1].style.backgroundColor = '#00000050';
+        });
+    }
+    for(var i =0;i<(target.childNodes.length-1)/2;i++){
+        target.childNodes[i*2+1].addEventListener("mouseleave",function(event){
+            event.target.childNodes[1].style.backgroundColor = 'transparent';
+       });
+   }
+
+
+
+
     for(var i =0;i<(target.childNodes.length-1)/2;i++){
         target.childNodes[i*2+1].addEventListener("click",function(event){
             clicked=event.target.getAttribute('value');
