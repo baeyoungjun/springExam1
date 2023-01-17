@@ -198,6 +198,7 @@ newdiv1.style.cssText="height: 3px;";
 //write progress bar
 var newdiv2=document.createElement('div');
 newdiv2.className="progress-bar";
+newdiv2.setAttribute('role','progressbar');
 newdiv2.style.cssText="width: 90%";
 newdiv1.appendChild(newdiv2);
 newCell5.appendChild(newdiv1);
