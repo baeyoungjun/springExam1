@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+	id 'war'
 	id 'org.springframework.boot' version '2.7.7'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
@@ -8,16 +9,63 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
 repositories {
 	mavenCentral()
 }
 
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'com.h2database:h2'
+
+	/** springboot default dependency **/
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	/** devtools **/
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	/** database **/
+	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.3'
+	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.1'
+
+	/** commons **/
+	implementation 'org.apache.commons:commons-collections4:4.4'
+	implementation group: 'commons-io', name: 'commons-io', version: '2.8.0'
+	implementation group: 'org.apache.commons', name: 'commons-text', version: '1.8'
+
+	/** validation (유효성검사) **/
+	implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	/** logging **/
+	//boot에 포함됨
+	//implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+	//db로그
+	implementation group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4', version: '1.16'
+	//log4j 보안 이슈로 인한 명시적 버전 업그레이드
+	implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.16.0'
+	implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.16.0'
+
+	/** json **/
+	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+}
+
+bootWar {
+	archiveBaseName = 'firstProjectSvr'
+	archiveVersion = '0.0.1'
+	archiveFileName = 'firstProjectSvr.war'
 }
 
 tasks.named('test') {

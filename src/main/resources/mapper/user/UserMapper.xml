@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.firstProject.mapper.user">
+
+
+    <!--5.1.1	[ILMS_USER_001] 사용자 인증 요청(로그인)-->
+    <select id="login" resultType="HashMap" parameterType="com.example.firstProject.dto.user.LoginData">
+        SELECT
+              USER_NO
+             ,USER_ID
+             ,USER_TYPE
+             ,USER_NAME
+             ,USER_PHONE
+             ,RSL_NO
+        FROM TBL_USER
+        WHERE USER_ID = BINARY(#{userId})
+          AND USER_PWD  = #{userPwd}
+    </select>
+
+    <!--5.1.3	[ILMS_USER_003] 사용자 정보 조회-->
+    <select id="getUserInfo" resultType="HashMap" parameterType="com.example.firstProject.dto.user.SessionData">
+        SELECT
+              USER_ID
+             ,USER_TYPE
+             ,USER_NAME
+             ,USER_PHONE
+             ,USER_MAIL
+             <choose>
+                 <when test="loginUserType == 3">
+                 ,TR.RSL_NO
+                 ,TR.RSL_NAME
+                 ,TR.RSL_PHONE
+                 </when>
+                 <otherwise>
+                 ,TD.DEPART_NO
+                 ,TD.DEPART_NAME
+                 </otherwise>
+             </choose>
+        FROM TBL_USER TU
+            <choose>
+                <when test="loginUserType == 3">
+                    JOIN TBL_RESELLER TR on TU.RSL_NO = TR.RSL_NO
+                </when>
+                <otherwise>
+                    JOIN TBL_DEPARTMENT TD on TU.DEPART_NO = TD.DEPART_NO
+                </otherwise>
+            </choose>
+        WHERE USER_NO = #{loginUserNo}
+    </select>
+
+    <!--5.1.4	[ILMS_USER_004] 사용자 정보 수정-->
+    <update id="updateUserInfo" parameterType="com.example.firstProject.dto.user.UserInfoData">
+        UPDATE TBL_USER TU <if test="loginUserType == 3"> JOIN TBL_RESELLER TR ON TU.RSL_NO = TR.RSL_NO </if>
+        <set>
+            <if test="userPwd != null"> TU.USER_PWD = #{userPwd}, </if>
+            <if test="userPhone != null"> TU.USER_PHONE = #{userPhone}, </if>
+            <if test="userMail != null"> TU.USER_MAIL = #{userMail}, </if>
+            <if test="loginUserType != 3 and departNo != null"> TU.DEPART_NO = #{departNo}, </if>
+            <if test="loginUserType == 3 and rslPhone != null"> TR.RSL_PHONE = #{rslPhone}, </if>
+        </set>
+        WHERE USER_NO = #{loginUserNo}
+    </update>
+
+    <!--5.1.5	[ILMS_USER_005] 사용자 별 코드 조회 (고객사) -->
+    <select id="getUserCustomerOption" resultType="HashMap" parameterType="com.example.firstProject.dto.user.SessionData">
+        SELECT
+               TC.CUS_NO AS code
+             , CUS_NAME AS label
+        FROM
+             TBL_CUSTOMER TC
+        <if test="loginUserType == 3">
+        WHERE CUS_NO IN (SELECT DISTINCT CUS_NO FROM TBL_LICENSE WHERE RSL_NO = #{loginRslNo})
+        </if>
+    </select>
+
+    <!--5.1.5	[ILMS_USER_005] 사용자 별 코드 조회 (제품) -->
+    <select id="getUserProductOption" resultType="HashMap" parameterType="com.example.firstProject.dto.user.SessionData">
+        SELECT
+              DISTINCT TP.PRD_NO AS code
+            , PRD_NAME AS label
+        FROM
+             TBL_PRODUCT TP
+             <if test="loginUserType == 3">
+             JOIN TBL_SERIAL TS ON TP.PRD_NO = TS.PRD_NO
+             JOIN TBL_LICENSE TL ON TL.LIC_NO = TS.LIC_NO
+        WHERE RSL_NO = #{loginRslNo} </if>
+    </select>
+
+    <!--5.1.5	[ILMS_USER_005] 사용자 별 코드 조회 (버전) -->
+    <select id="getVersionOption" resultType="HashMap" parameterType="HashMap">
+        SELECT PRD_VER_NO AS code, PRD_VERSION AS label
+        FROM TBL_PRODUCT
+        WHERE PRD_NO = #{prdNo}
+    </select>
+
+    <!--5.1.5	[ILMS_USER_005] 사용자 별 코드 조회 (총판사) -->
+    <select id="getUserResellerOption" resultType="HashMap" parameterType="com.example.firstProject.dto.user.SessionData">
+        SELECT RSL_NO AS code, RSL_NAME AS label
+        FROM TBL_RESELLER
+        <if test="loginUserType == 3"> WHERE RSL_NO = #{loginRslNo} -- 총판사용자는 본인것만 조회 </if>
+    </select>
+
+    <!--5.1.5	[ILMS_USER_005] 사용자 별 코드 조회 (부서) -->
+    <select id="getUserDepartmentOption" resultType="HashMap" parameterType="com.example.firstProject.dto.user.SessionData">
+        SELECT DEPART_NO AS code, DEPART_NAME AS label
+        FROM TBL_DEPARTMENT
+    </select>
+
+
+</mapper>
