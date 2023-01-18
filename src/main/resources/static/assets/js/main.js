@@ -8,11 +8,33 @@ var arr=['채승훈','최보경','배영준','이상민'];
 
 setInterval(function(){
     var temp=document.getElementById("temp");
-        temp.textContent=arr[count%4];
-        count++;
-    }, 1000);
+    temp.textContent=arr[count%4];
+    count++;
+}, 1000);
 
+setInterval(function(){
+    var temp=document.getElementById("battery");
+    temp.textContent=arr[count%4];
+    count++;
+}, 200);
 
+setInterval(function(){
+    var temp=document.getElementById("fass");
+    temp.textContent=arr[count%4];
+    count++;
+}, 500);
+
+function wait(sec) {
+
+    let start = Date.now(), now = start;
+
+    while (now - start < sec * 1000) {
+
+        now = Date.now();
+
+    }
+
+}
 window.onload = function(){
  	console.log(location.href);
 
@@ -25,10 +47,16 @@ window.onload = function(){
     for(var i =0;i<(target.childNodes.length-1)/2;i++){
         target.childNodes[i*2+1].addEventListener("click",function(event){
             clicked=event.target.getAttribute('value');
-            var hide=document.getElementById("firstTab");
-            var show=document.getElementById("content");
-            show.style.display='';
-            hide.style.display='none';
+            var len=event.target.className.length;
+            var temp=event.target.className; //class 명 원상 복귀용
+            event.target.className+=" animated shake";
+            setTimeout(function(e){
+                event.target.className=temp; //class 명 원상 복귀
+                var hide=document.getElementById("firstTab");
+                var show=document.getElementById("content");
+                show.style.display='';
+                hide.style.display='none';
+            },1150)
         });
     }
   }
