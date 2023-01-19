@@ -1,5 +1,5 @@
 var clicked='';
-
+var MouseTemp = '';
 
 
 //실시간 글씨 변경 사용법
@@ -48,12 +48,17 @@ window.onload = function(){
     //마우스 오버 시각화
     for(var i =0;i<(target.childNodes.length-1)/2;i++){
          target.childNodes[i*2+1].addEventListener("mouseenter",function(event){
+            MouseTemp = event.target.className;
             event.target.childNodes[1].style.backgroundColor = '#00000050';
+            event.target.className+=" animated pulse";
+            //console.log(MouseTemp);
         });
     }
     for(var i =0;i<(target.childNodes.length-1)/2;i++){
-        target.childNodes[i*2+1].addEventListener("mouseleave",function(event){
+            target.childNodes[i*2+1].addEventListener("mouseleave",function(event){
             event.target.childNodes[1].style.backgroundColor = 'transparent';
+            event.target.className=MouseTemp;
+            //console.log(MouseTemp);
        });
    }
 

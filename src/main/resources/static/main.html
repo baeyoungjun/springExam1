@@ -28,6 +28,10 @@
     <!-- Custom Style-->
     <link href="assets/css/app-style.css" rel="stylesheet">
 
+    <link href="assets/css/animate.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="css/animations.css" rel="stylesheet">
+
     <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
 
@@ -126,10 +130,13 @@
 
     <div class="content-wrapper">
         <div class="card-content" id="firstTab">
-            <div class="row row-group m-0" id="cardList">
+            <div class="row row-group m-0 " id="cardList">
                 <div class="col-12 col-lg-6 col-xl-3 border-light" value="차">
-                    <div class="card-body" value="차" style="opacity : 1; background-color : transparent;">
-                        <h5 class="text-white mb-0" id="temp" value="차">차 <span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
+                    <div class="card-body " value="차" style="opacity : 1; background-color : transparent;">
+                        <h5 class="text-white mb-0 animate__animated slideInUp animate__delay-0.2s animate__infinite animate__slower"
+                            style = "color : white;"
+                            id="temp"
+                            value="차">시작 <span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
                         <div class="progress my-3" style="height:3px;" value="차">
                             <div class="progress-bar" style="width:55%" value="차"></div>
                         </div>
@@ -137,8 +144,9 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-xl-3 border-light" value="배터리">
-                    <div class="card-body" value="배터리" style="opacity : 1; background-color : transparent;">
-                        <h5 class="text-white mb-0" value="배터리">배터리 <span class="float-right"><i class="fa fa-usd"></i></span></h5>
+                    <div class="card-body" value="배터리ssss" style="opacity : 1; background-color : transparent;">
+                        <h5 class="text-white mb-0" value="배터리">배터리ssssss <span class="float-right"><i class="fa fa-usd"></i></span></h5>
+<!--                        <h1 class="animate__animated animate__fadeOutUp animate__delay-1s animate__infinite">HIHIHI</h1>-->
                         <div class="progress my-3" style="height:3px;" value="배터리">
                             <div class="progress-bar" style="width:55%" value="배터리"></div>
                         </div>
