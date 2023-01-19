@@ -6,10 +6,10 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotBlank;
 
 /**
- * ILMS :  사용자 로그인 (인증) data
+ * 사용자 로그인 (인증) data
  *
  * @author Choi Bo Kyung
- * @version 2022-02-07 최초생성
+ * @version 2023-01-19 최초생성
  *
  * <b>History:</b>
  **/
@@ -19,11 +19,11 @@ public class LoginData {
     
     /** 사용자 아이디 **/
     @NotBlank
-    @Length(min = 1, max = 20)
+    @Length(min = 1, max = 100)
     private String userId;
 
     /** 사용자 비밀번호 **/
     @NotBlank
-    @Length(min = 1, max = 256)
+    @Length(min = 1, max = 100)
     private String userPwd;
 }
