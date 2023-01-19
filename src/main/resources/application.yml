@@ -65,7 +65,7 @@ mybatis:
 # Logger
 logging:
   file:
-    path: /Users/KOSCOM/Desktop/cbk/logs
+    path: /log
   level:
     root: debug
     org.springframework: debug
