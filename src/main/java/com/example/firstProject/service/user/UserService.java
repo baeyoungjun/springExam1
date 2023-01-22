@@ -1,8 +1,6 @@
 package com.example.firstProject.service.user;
 
 import com.example.firstProject.dto.user.LoginData;
-import com.example.firstProject.dto.user.SessionData;
-import com.example.firstProject.dto.user.UserInfoData;
 
 import java.util.HashMap;
 
@@ -26,32 +24,4 @@ public interface UserService {
     **/
     HashMap login(LoginData loginData) throws Exception;
 
-    /**
-    * @Api 5.1.3	[ILMS_USER_003] 사용자 정보 조회
-    *
-    * @param sessionData {@link SessionData}
-    * @return {@link HashMap}
-    * @throws {@link Exception}
-    **/
-    HashMap getUserInfo(SessionData sessionData) throws Exception;
-
-    /**
-    * @Api 5.1.4	[ILMS_USER_004] 사용자 정보 수정
-    *
-    * @param userInfoData {@link UserInfoData}
-    * @return {@link Integer}
-    * @throws {@link Exception}
-    **/
-    int updateUserInfo(UserInfoData userInfoData) throws Exception;
-
-    /**
-    * @Api 5.1.5	[ILMS_USER_005] 사용자 별 총판/고객사/제품/부서 코드 조회
-    *
-    * @param codeType {@link String}
-    * @param prdNo {@link String}
-    * @param sessionData {@link SessionData}
-    * @return {@link HashMap}
-    * @throws {@link Exception}
-    **/
-    HashMap getUserOption(String codeType, String prdNo, SessionData sessionData) throws Exception;
 }
