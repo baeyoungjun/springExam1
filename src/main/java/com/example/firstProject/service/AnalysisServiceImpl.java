@@ -43,4 +43,11 @@ public class AnalysisServiceImpl implements AnalysisService {
         List<HashMap<String,Object>> result = analysisMapper.getThemeTop4List(themePk);
         return ObjectUtils.keyToCamelCase(result);
     }
+
+    @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public List<HashMap<String, Object>> getThemeBuyDetail(int themePk, int loginUserPk) throws Exception {
+        List<HashMap<String,Object>> result = analysisMapper.getThemeBuyDetail(themePk, loginUserPk);
+        return ObjectUtils.keyToCamelCase(result);
+    }
 }

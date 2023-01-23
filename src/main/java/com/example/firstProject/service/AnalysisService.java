@@ -19,4 +19,7 @@ public interface AnalysisService {
 
     /** 테마 별 수익률 상위 4개 **/
     List<HashMap<String, Object>> getThemeTop4List(int themePk) throws Exception;
+
+    /** 테마 별 투자 상세 내역 **/
+    List<HashMap<String, Object>> getThemeBuyDetail(int parseInt, int userPk) throws Exception;
 }

@@ -46,10 +46,12 @@ public class UserController {
         //사용자 없음
         if(loginResult == null || loginResult.size() == 0) return ReturnCode.E_400.getHashMap();
 
-        //로그인 사용자 정보 담기
-        request.setAttribute("loginUserPk", loginResult.get("userPk").toString());
-        request.setAttribute("loginUserId", loginResult.get("userId").toString());
-        request.setAttribute("loginUserName", loginResult.get("userName").toString());
+        //세션 설정
+        session.setAttribute("loginUserPk", loginResult.get("userPk").toString());
+        session.setAttribute("loginUserId", loginResult.get("userId").toString());
+        session.setAttribute("loginUserName", loginResult.get("userName").toString());
+
+        //사용자 정보 담아서 응답
         HashMap<String,Object> res = ReturnCode.S_0.getHashMap();
         res.putAll(loginResult);
         return res;

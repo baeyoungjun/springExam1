@@ -57,9 +57,27 @@ public class AnalysisController {
 
         List<HashMap<String,Object>> themeTop4List = analysisService.getThemeTop4List(Integer.parseInt(themePk));
         HashMap<String,Object> res = ReturnCode.S_0.getHashMap();
-        res.put("themeList", themeTop4List);
+        res.put("themeTop4List", themeTop4List);
         return res;
     }
+
+    /**
+     * 테마 별 투자 상세 내역
+     **/
+    @GetMapping(value = "/theme/{themePk}/buyDetail", produces="application/json; charset=utf-8")
+    @ResponseBody
+    public HashMap<String,Object> getThemeBuyDetail(@PathVariable String themePk, HttpServletRequest request, HttpSession session) throws Exception{
+
+        if(!ObjectUtils.isNumber(themePk, true)) return ReturnCode.E_400.getHashMap();
+        if(ObjectUtils.isNull(session.getAttribute("loginUserPk"))) return ReturnCode.E_401.getHashMap();
+
+        int loginUserPk = Integer.parseInt(session.getAttribute("loginUserPk").toString());
+        List<HashMap<String,Object>> buyDetailList = analysisService.getThemeBuyDetail(Integer.parseInt(themePk), loginUserPk);
+        HashMap<String,Object> res = ReturnCode.S_0.getHashMap();
+        res.put("buyDetailList", buyDetailList);
+        return res;
+    }
+
 
 
 

@@ -1,6 +1,7 @@
 package com.example.firstProject.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,4 +21,6 @@ public interface AnalysisMapper {
     List<HashMap<String, Object>> getThemeList() throws Exception;
 
     List<HashMap<String, Object>> getThemeTop4List(int themePk) throws Exception;
+
+    List<HashMap<String, Object>> getThemeBuyDetail(@Param("themePk") int themePk, @Param("loginUserPk")int loginUserPk) throws Exception;
 }

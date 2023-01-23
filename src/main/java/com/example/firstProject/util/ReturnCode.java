@@ -7,7 +7,7 @@ import java.util.HashMap;
 public enum ReturnCode {
 
     //성공
-	S_0(0,"성공"),
+	S_0(200,"성공"),
 
     //서버 에러
     E_400(400,"요청 정보가 잘못되었습니다."),
