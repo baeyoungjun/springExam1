@@ -18,4 +18,6 @@ import java.util.List;
 public interface AnalysisMapper {
 
     List<HashMap<String, Object>> getThemeList() throws Exception;
+
+    List<HashMap<String, Object>> getThemeTop4List(int themePk) throws Exception;
 }

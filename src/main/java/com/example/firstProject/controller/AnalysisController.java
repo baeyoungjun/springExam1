@@ -1,13 +1,11 @@
 package com.example.firstProject.controller;
 
 import com.example.firstProject.service.AnalysisService;
+import com.example.firstProject.util.ObjectUtils;
 import com.example.firstProject.util.ReturnCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -45,6 +43,21 @@ public class AnalysisController {
         List<HashMap<String,Object>> themeList = analysisService.getThemeList();
         HashMap<String,Object> res = ReturnCode.S_0.getHashMap();
         res.put("themeList", themeList);
+        return res;
+    }
+
+    /**
+     * 테마 별 수익률 상위 4개
+     **/
+    @GetMapping(value = "/theme/{themePk}/top4", produces="application/json; charset=utf-8")
+    @ResponseBody
+    public HashMap<String,Object> getThemeTop4(@PathVariable String themePk, HttpServletRequest request, HttpSession session) throws Exception{
+
+        if(!ObjectUtils.isNumber(themePk, true)) return ReturnCode.E_400.getHashMap();
+
+        List<HashMap<String,Object>> themeTop4List = analysisService.getThemeTop4List(Integer.parseInt(themePk));
+        HashMap<String,Object> res = ReturnCode.S_0.getHashMap();
+        res.put("themeList", themeTop4List);
         return res;
     }
 
