@@ -31,7 +31,7 @@
              -->
     </settings>
     <mappers>
-        <mapper resource="mapper/user/UserMapper.xml"/>
-        <mapper resource="mapper/analysis/AnalysisMapper.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/AnalysisMapper.xml"/>
     </mappers>
 </configuration>

@@ -1,7 +1,7 @@
-package com.example.firstProject.controller.user;
+package com.example.firstProject.controller;
 
-import com.example.firstProject.dto.user.LoginData;
-import com.example.firstProject.service.user.UserService;
+import com.example.firstProject.dto.LoginData;
+import com.example.firstProject.service.UserService;
 import com.example.firstProject.util.ReturnCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +34,7 @@ public class UserController {
     }
 
     /**
-    * @Api 5.1.1	[ILMS_USER_001] 사용자 인증 요청(로그인)
-    *
-    * @param loginData {@link LoginData}
-    * @param request {@link HttpServletRequest}
-    * @param session {@link HttpSession}
-    * @return {@link HashMap}
-    * @throws {@link Exception}
+    *사용자 인증 요청(로그인)
     **/
     @PostMapping(value = "/login", produces="application/json; charset=utf-8")
     @ResponseBody
@@ -60,6 +54,20 @@ public class UserController {
         res.putAll(loginResult);
         return res;
     }
+
+    /**
+     *사용자 인증 삭제(로그아웃)
+     **/
+    @DeleteMapping(value = "/logout", produces="application/json; charset=utf-8")
+    @ResponseBody
+    public HashMap<String,Object> logout(HttpServletRequest request, HttpSession session) throws Exception{
+
+        //세션 삭제
+        session.invalidate();
+        return ReturnCode.S_0.getHashMap();
+    }
+
+
 
 
 
