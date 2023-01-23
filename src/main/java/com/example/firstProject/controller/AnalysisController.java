@@ -49,22 +49,22 @@ public class AnalysisController {
     /**
      * 테마 별 수익률 상위 4개
      **/
-    @GetMapping(value = "/theme/{themePk}/top4", produces="application/json; charset=utf-8")
+    @GetMapping(value = "/theme/top4/{themePk}", produces="application/json; charset=utf-8")
     @ResponseBody
     public HashMap<String,Object> getThemeTop4(@PathVariable String themePk, HttpServletRequest request, HttpSession session) throws Exception{
 
         if(!ObjectUtils.isNumber(themePk, true)) return ReturnCode.E_400.getHashMap();
 
-        List<HashMap<String,Object>> themeTop4List = analysisService.getThemeTop4List(Integer.parseInt(themePk));
+        List<HashMap<String,Object>> top4List = analysisService.getThemeTop4List(Integer.parseInt(themePk));
         HashMap<String,Object> res = ReturnCode.S_0.getHashMap();
-        res.put("themeTop4List", themeTop4List);
+        res.put("top4List", top4List);
         return res;
     }
 
     /**
      * 테마 별 투자 상세 내역
      **/
-    @GetMapping(value = "/theme/{themePk}/buyDetail", produces="application/json; charset=utf-8")
+    @GetMapping(value = "/theme/buyDetail/{themePk}", produces="application/json; charset=utf-8")
     @ResponseBody
     public HashMap<String,Object> getThemeBuyDetail(@PathVariable String themePk, HttpServletRequest request, HttpSession session) throws Exception{
 
@@ -78,6 +78,20 @@ public class AnalysisController {
         return res;
     }
 
+    /**
+     * 테마 별 주가 예측
+     **/
+    /*@GetMapping(value = "/theme/forecast/{themePk}", produces="application/json; charset=utf-8")
+    @ResponseBody
+    public HashMap<String,Object> getThemeForecast(@PathVariable String themePk, HttpServletRequest request, HttpSession session) throws Exception{
+
+        if(!ObjectUtils.isNumber(themePk, true)) return ReturnCode.E_400.getHashMap();
+
+        List<HashMap<String,Object>> forecastList = analysisService.getThemeForecast(Integer.parseInt(themePk));
+        HashMap<String,Object> res = ReturnCode.S_0.getHashMap();
+        res.put("forecastList", forecastList);
+        return res;
+    }*/
 
 
 

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
-* ILMS :  주가 분석 서비스 - 인터페이스 클래스
+* 주가 분석 서비스 - 인터페이스 클래스
 *
 * @author Choi Bo Kyung
 * @version 2023-01-23 최초생성
@@ -22,4 +22,7 @@ public interface AnalysisService {
 
     /** 테마 별 투자 상세 내역 **/
     List<HashMap<String, Object>> getThemeBuyDetail(int parseInt, int userPk) throws Exception;
+
+    /** 테마 별 주가 예측 **//*
+    List<HashMap<String, Object>> getThemeForecast(int parseInt) throws Exception;*/
 }
