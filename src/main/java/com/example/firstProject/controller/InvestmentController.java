@@ -50,11 +50,5 @@ public class InvestmentController {
         res.put("investmentList", investmentList);
         return res;
     }
-
-
-
-
-
-
 }
 
