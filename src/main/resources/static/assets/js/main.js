@@ -3,38 +3,39 @@ var MouseTemp = '';
 
 
 //실시간 글씨 변경 사용법
-var count=0;
-var arr=['채승훈','최보경','배영준','이상민'];
+// 2023.02.04 배영준 [테스트를 위해 일시 주석처리]
+//var count=0;
+//var arr=['채승훈','최보경','배영준','이상민'];
+//
+//setInterval(function(){
+//    var temp=document.getElementById("temp");
+//    temp.textContent=arr[count%4];
+//    count++;
+//}, 1000);
+//
+//setInterval(function(){
+//    var temp=document.getElementById("battery");
+//    temp.textContent=arr[count%4];
+//    count++;
+//}, 200);
+//
+//setInterval(function(){
+//    var temp=document.getElementById("fass");
+//    temp.textContent=arr[count%4];
+//    count++;
+//}, 500);
+//
+//function wait(sec) {
+//
+//    let start = Date.now(), now = start;
+//
+//    while (now - start < sec * 1000) {
+//
+//        now = Date.now();
+//
+//    }
+//}
 
-setInterval(function(){
-    var temp=document.getElementById("temp");
-    temp.textContent=arr[count%4];
-    count++;
-}, 1000);
-
-setInterval(function(){
-    var temp=document.getElementById("battery");
-    temp.textContent=arr[count%4];
-    count++;
-}, 200);
-
-setInterval(function(){
-    var temp=document.getElementById("fass");
-    temp.textContent=arr[count%4];
-    count++;
-}, 500);
-
-function wait(sec) {
-
-    let start = Date.now(), now = start;
-
-    while (now - start < sec * 1000) {
-
-        now = Date.now();
-
-    }
-
-}
 window.onload = function(){
  	console.log(location.href);
 
