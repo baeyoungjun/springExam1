@@ -134,8 +134,7 @@
                 <div class="col-12 col-lg-6 col-xl-3 border-light" value="차">
                     <div class="card-body " value="차" style="opacity : 1; background-color : transparent;">
                         <h5 class="text-white mb-0 animate__animated slideInUp animate__delay-0.2s animate__infinite animate__slower"
-                            style = "color : white;"
-                            id="temp"
+                            style = "color : white;" id="car"
                             value="차">시작 <span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
                         <div class="progress my-3" style="height:3px;" value="차">
                             <div class="progress-bar" style="width:55%" value="차"></div>
@@ -145,7 +144,7 @@
                 </div>
                 <div class="col-12 col-lg-6 col-xl-3 border-light" value="배터리">
                     <div class="card-body" value="배터리ssss" style="opacity : 1; background-color : transparent;">
-                        <h5 class="text-white mb-0" value="배터리">배터리ssssss <span class="float-right"><i class="fa fa-usd"></i></span></h5>
+                        <h5 id = "battery" class="text-white mb-0" value="배터리">배터리ssssss <span class="float-right"><i class="fa fa-usd"></i></span></h5>
 <!--                        <h1 class="animate__animated animate__fadeOutUp animate__delay-1s animate__infinite">HIHIHI</h1>-->
                         <div class="progress my-3" style="height:3px;" value="배터리">
                             <div class="progress-bar" style="width:55%" value="배터리"></div>
@@ -155,7 +154,7 @@
                 </div>
                 <div class="col-12 col-lg-6 col-xl-3 border-light" value="반도체">
                     <div class="card-body" value="반도체" style="opacity : 1; background-color : transparent;">
-                        <h5 class="text-white mb-0" value="반도체">반도체 <span class="float-right"><i class="fa fa-eye"></i></span></h5>
+                        <h5 id = "semi" class="text-white mb-0" value="반도체">반도체 <span class="float-right"><i class="fa fa-eye"></i></span></h5>
                         <div class="progress my-3" style="height:3px;" value="반도체">
                             <div class="progress-bar" style="width:55%" value="반도체"></div>
                         </div>
@@ -164,7 +163,7 @@
                 </div>
                 <div class="col-12 col-lg-6 col-xl-3 border-light" value="esg">
                     <div class="card-body" value="esg" style="opacity : 1; background-color : transparent;">
-                        <h5 class="text-white mb-0" value="esg">esg <span class="float-right"><i class="fa fa-envira"></i></span></h5>
+                        <h5 id = "erection" class="text-white mb-0" value="esg">esg <span class="float-right"><i class="fa fa-envira"></i></span></h5>
                         <div class="progress my-3" style="height:3px;" value="esg">
                             <div class="progress-bar" style="width:55%" value="esg"></div>
                         </div>
@@ -433,8 +432,21 @@
             headers: {
 	            "Content-Type": "application/json"
 	        },
+	        dataType:'json',
 	        success: function(result) {
 	            console.log(result);
+	            $.each(result.themeList, function(idx, val) {
+                    console.log(idx + " " + val.themeName);
+                    if(val.themePk == 1){
+                        document.getElementById("car").innerText = val.themeName;
+                    } else if(val.themePk == 2){
+                        document.getElementById("semi").innerText = val.themeName;
+                    } else if(val.themePk == 3){
+                        document.getElementById("battery").innerText = val.themeName;
+                    } else if(val.themePk == 4){
+                        document.getElementById("erection").innerText = val.themeName;
+                    }
+                });
 	        }
         });
     }
