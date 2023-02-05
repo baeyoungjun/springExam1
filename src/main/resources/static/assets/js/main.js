@@ -139,3 +139,7 @@ newdiv2.style.cssText="width: 90%";
 newdiv1.appendChild(newdiv2);
 newCell5.appendChild(newdiv1);
 */
+
+function test(){
+    location.replace("/calendar");
+}

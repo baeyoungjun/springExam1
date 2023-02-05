@@ -10,4 +10,9 @@ public class ViewController {
     public String main() {
         return "main";
     }
+
+    @GetMapping(value = "/calendar")
+    public String calendar() {
+        return "calendar";
+    }
 }
