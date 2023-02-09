@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api")
-public class StockController {
+public class StockController { 
 
     private final StockService stockService;
 
